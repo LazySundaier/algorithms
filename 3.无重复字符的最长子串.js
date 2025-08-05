@@ -58,4 +58,3 @@ var lengthOfLongestSubstring = function (s) {
   return maxLen;
 };
 // @lc code=end
-

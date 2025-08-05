@@ -18,21 +18,17 @@
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var flatten = function (root) {
-  let dummy = new TreeNode();
-  let current = dummy;
-  preOrder(root);
-
-  function preOrder(root) {
-    if (!root) return;
-    // 先保存左右子树（因为下一次递归会修改这个节点的指针）
-    const left = root.left;
-    const right = root.right;
-
-    current.right = root;
-    current.left = null;
-    current = root;
-    preOrder(left);
-    preOrder(right);
+  while (root) {
+    if (root.left) {
+      let rightmost = root.left;
+      while (rightmost.right) {
+        rightmost = rightmost.right;
+      }
+      rightmost.right = root.right;
+      root.right = root.left;
+      root.left = null;
+    }
+    root = root.right;
   }
 };
 // @lc code=end

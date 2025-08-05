@@ -39,4 +39,3 @@ var rotate = function (nums, k) {
   }
 };
 // @lc code=end
-

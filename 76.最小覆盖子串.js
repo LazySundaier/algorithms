@@ -16,15 +16,17 @@ var minWindow = function (s, t) {
   if (s.length === 0 || t.length === 0) return "";
 
   // 统计 t 中每个字符的需求
-  const need = {};
+  const need = [];
   for (let c of t) {
     need[c] = (need[c] || 0) + 1;
   }
 
-  let left = 0, right = 0;
+  let left = 0,
+    right = 0;
   let count = 0; // 已经满足的字符数
-  let minLen = Infinity, start = 0;
-  const window = {};
+  let minLen = Infinity,
+    start = 0;
+  const window = [];
 
   while (right < s.length) {
     let c = s[right];
@@ -36,7 +38,7 @@ var minWindow = function (s, t) {
     }
     right++;
 
-    // 当窗口内包含 t 所有字符
+    // 当窗口内包含 t 所有字符,但是子串的左边可能有多余的字符,需要收缩左边界
     while (count === t.length) {
       if (right - left < minLen) {
         minLen = right - left;
@@ -55,4 +57,3 @@ var minWindow = function (s, t) {
   return minLen === Infinity ? "" : s.substring(start, start + minLen);
 };
 // @lc code=end
-
